@@ -1,4 +1,5 @@
 const path = require('path');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	entry: './src/index.js',
@@ -12,5 +13,24 @@ module.exports = {
 		port: 9000,
 		watchContentBase: true,
 		publicPath: '/js/',
+	},
+	module: {
+		rules: [
+			{
+				test: /\.(sa|sc|c)ss$/,
+				use: [
+					// {
+					// 	loader: MiniCssExtractPlugin.loader,
+					// 	options: {
+					// 		publicPath: '../',
+					// 	},
+					// },
+					'style-loader',
+					'css-loader',
+					// 'postcss-loader',
+					'sass-loader',
+				],
+			},
+		],
 	},
 };
