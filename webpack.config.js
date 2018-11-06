@@ -1,33 +1,25 @@
 const path = require('path');
-// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	entry: './src/index.js',
 	output: {
-		path: path.resolve(__dirname, 'docs/js'),
-		filename: 'main.js',
+		path: path.resolve(__dirname, 'docs'),
+		filename: 'js/main.js',
 	},
 	devServer: {
 		contentBase: path.join(__dirname, 'docs'),
 		compress: true,
 		port: 9000,
 		watchContentBase: true,
-		publicPath: '/js/',
 	},
 	module: {
 		rules: [
 			{
 				test: /\.(sa|sc|c)ss$/,
 				use: [
-					// {
-					// 	loader: MiniCssExtractPlugin.loader,
-					// 	options: {
-					// 		publicPath: '../',
-					// 	},
-					// },
-					'style-loader',
+					MiniCssExtractPlugin.loader,
 					'css-loader',
-					// 'postcss-loader',
 					'sass-loader',
 				],
 			},
@@ -43,4 +35,9 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: "css/[name].css",
+		}),
+	],
 };
