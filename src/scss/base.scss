@@ -11,3 +11,8 @@ html {
 }
 
 @import "~bootstrap/scss/bootstrap";
+
+.product-image {
+	max-height: 200px;
+	object-fit: contain;
+}
